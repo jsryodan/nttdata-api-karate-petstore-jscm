@@ -1,0 +1,19 @@
+EJERCICIO 2 - CONCLUSIONES Y HALLAZGOS
+
+Resumen
+Se implementaron pruebas automatizadas de API con Karate Framework para la Petstore.
+El flujo cubre creación, consulta, actualización y consulta por estatus.
+
+Hallazgos
+1) Se validó la creación de una mascota mediante POST /pet y se capturó el ID generado.
+1.1) Se utilizaó Callonce para capturar y reutilizar el ID generado en siguientes escenarios
+2) Se validó la consulta por ID mediante GET /pet/{id}.
+3) Se actualizó la mascota (nombre y status="sold") y se verificó la respuesta.
+4) Se consultaron mascotas por status mediante GET /pet/findByStatus?status=sold.
+5) En Swagger no consta documentado la respuesta de código 200 / 201
+6) Se presentó un error en la API de actualización de mascota (nombre y status="sold"), mostrando un error 415 pues no se permitió envíar el ID en el path, para solventarlo se modificó el JSON (* set) para enviar el ID
+
+Conclusiones
+- La automatización permite validar los estados HTTP y el contenido del response.
+- La solución es mantenible: datos de entrada en JSON, baseUrl centralizada y reportes HTML generados automáticamente.
+- Al utilizar Callonce el reporte muestra 3 APIs, pues la primera API se ejecta en otro archivo feature, en la ejecición de la API GET by PET ID se agregó la impresión del ID obtenido al crear mascota
